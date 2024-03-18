@@ -105,7 +105,7 @@ const TypingPhase = (props) => {
       return () => {
         document.removeEventListener("keydown", handleKeyDown);
       };
-    }, []); // 空の依存配列を指定して、エフェクトをコンポーネントのマウント時とアンマウント時にのみ実行
+    }, [handleKeyDown]); // 空の依存配列を指定して、エフェクトをコンポーネントのマウント時とアンマウント時にのみ実行
 
     // モーダルを閉じたらカウント開始
     if (!isOpen) return null;
