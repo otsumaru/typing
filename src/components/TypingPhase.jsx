@@ -71,14 +71,20 @@ const TypingPhase = (props) => {
   const BeforeGameModal = ({ isOpen, setIsOpen }) => {
     // カウントダウンの状態を管理するためのState
     const [countdown, setCountdown] = useState(null);
+    // カウントダウンが開始されたかの状態
+    const [isCountdownStarted, setIsCountdownStarted] = useState(false);
     // キーボードイベントを処理する関数
     const handleKeyDown = (event) => {
       // スペースキーかエンターキーが押された場合
-      if (event.keyCode === 32 || event.keyCode === 13) {
+      if (
+        (event.keyCode === 32 || event.keyCode === 13) &&
+        !isCountdownStarted
+      ) {
         startCountdown();
       }
     };
     const startCountdown = () => {
+      setIsCountdownStarted(true);
       let counter = 3;
       setCountdown(counter);
       const interval = setInterval(() => {
